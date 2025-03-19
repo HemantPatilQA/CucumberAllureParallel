@@ -35,4 +35,13 @@ public class ResReqSteps {
         Assert.assertEquals(response.getStatusCode(), responseStatus);
         Allure.addAttachment("Response Code", String.valueOf(response.statusCode()));
     }
+
+    @Given("I send a request to get the user details for user with id {string}")
+    public void iSendARequestToGetTheUserDetailsForUserWithId(String userid) {
+        String url = ConfigManager.getEndpoint("GET_USERS").replace("2", userid);
+        System.out.println("Environment: " + ConfigManager.getEnvironment() + "Executing Thread: " + Thread.currentThread().getId() + " | Request: " + url);
+        response = given().header("Content-Type", "application/json").get(url).then().extract().response();
+        Allure.addAttachment("Request URL", url);
+        Allure.addAttachment("Response Body", new ByteArrayInputStream(response.asByteArray()));
+    }
 }
