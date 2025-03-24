@@ -12,3 +12,4 @@ Feature: Test reqres APIs with Cucumber
       |  2       |  200           |
       |  3       |  200           |
       |  a       |  404           |
+      |  $       |  404           |
